@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "name": "Nhà hàng Việt Nam",
+    "cuisine": "Ẩm thực Việt",
+    "rating": 4.7,
+    "deliveryTime": "20-30 phút",
+    "distance": "1.2 km",
+    "deliveryFee": 15000,
+    "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800",
+    "tags": ["Món mới", "Ưu đãi"],
+    "promoted": true
+  },
+  {
+    "id": "2",
+    "name": "Phở 24",
+    "cuisine": "Ẩm thực Việt",
+    "rating": 4.6,
+    "deliveryTime": "20-30 phút",
+    "distance": "1.5 km",
+    "deliveryFee": 12000,
+    "image": "https://images.unsplash.com/photo-1596662951482-0c4e0d53a7e8?w=800",
+    "tags": ["Ưu đãi"],
+    "promoted": false
+  }
+]

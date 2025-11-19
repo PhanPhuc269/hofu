@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ensure web background matches app status bar background */
+html,
+body,
+#root {
+  background-color: #06b35f;
+}

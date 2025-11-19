@@ -1,0 +1,16 @@
+[
+  {
+    "id": "addr_1",
+    "recipient": "Nguyễn Văn An",
+    "address": "123 Đường ABC, Quận 1, TP. HCM",
+    "phone": "0987654321",
+    "note": "Cửa sau"
+  },
+  {
+    "id": "addr_2",
+    "recipient": "Nguyễn Thị B",
+    "address": "456 Đường DEF, Quận 3, TP. HCM",
+    "phone": "0912345678",
+    "note": "Gần cây xăng"
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "id": "cart_user_1",
+  "items": [
+    {
+      "id": "1",
+      "name": "Phở Bò",
+      "price": 45000,
+      "quantity": 1,
+      "image": "https://images.unsplash.com/photo-1620147123631-7291b2b5a4f7?w=900"
+    },
+    {
+      "id": "3",
+      "name": "Trà Đá",
+      "price": 5000,
+      "quantity": 2,
+      "image": "https://images.unsplash.com/photo-1546916925-509d4f177c37?w=900"
+    }
+  ]
+}

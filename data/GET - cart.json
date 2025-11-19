@@ -1,0 +1,21 @@
+{
+  "id": "cart_1",
+  "items": [
+    {
+      "id": "1",
+      "name": "Phở Bò",
+      "restaurant": "Phở Hòa Bình",
+      "price": 45000,
+      "quantity": 2,
+      "image": "https://images.unsplash.com/photo-1620147123631-7291b2b5a4f7?w=900"
+    },
+    {
+      "id": "2",
+      "name": "Gỏi Cuốn",
+      "restaurant": "Phở Hòa Bình",
+      "price": 25000,
+      "quantity": 1,
+      "image": "https://images.unsplash.com/photo-1648580852350-3098af89f110?w=900"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+[
+  {
+    "id": "1",
+    "name": "Nhà hàng Việt Nam",
+    "cuisine": "Ẩm thực Việt",
+    "rating": 4.7,
+    "deliveryTime": "20-30 phút",
+    "deliveryTimeMinutes": 25,
+    "distance": "1.2 km",
+    "deliveryFee": 15000,
+    "image": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800",
+    "tags": ["Món mới", "Ưu đãi"],
+    "promoted": true
+  },
+  {
+    "id": "2",
+    "name": "Pizza Italiano",
+    "cuisine": "Ẩm thực Ý",
+    "rating": 4.5,
+    "deliveryTime": "25-35 phút",
+    "deliveryTimeMinutes": 30,
+    "distance": "2.1 km",
+    "deliveryFee": 20000,
+    "image": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800",
+    "tags": ["Ưu đãi"],
+    "promoted": false
+  },
+  {
+    "id": "3",
+    "name": "Sushi Land",
+    "cuisine": "Ẩm thực Nhật",
+    "rating": 4.8,
+    "deliveryTime": "30-40 phút",
+    "deliveryTimeMinutes": 35,
+    "distance": "3.5 km",
+    "deliveryFee": 30000,
+    "image": "https://images.unsplash.com/photo-1579584425590-09bbd109b4d0?w=800",
+    "tags": ["Món mới"],
+    "promoted": true
+  },
+  {
+    "id": "4",
+    "name": "Burger King",
+    "cuisine": "Fast Food",
+    "rating": 4.3,
+    "deliveryTime": "15-25 phút",
+    "deliveryTimeMinutes": 20,
+    "distance": "0.8 km",
+    "deliveryFee": 10000,
+    "image": "https://images.unsplash.com/photo-1550547660-9be5dfee402f?w=800",
+    "tags": [],
+    "promoted": false
+  },
+  {
+    "id": "5",
+    "name": "Phở 24",
+    "cuisine": "Ẩm thực Việt",
+    "rating": 4.6,
+    "deliveryTime": "20-30 phút",
+    "deliveryTimeMinutes": 25,
+    "distance": "1.5 km",
+    "deliveryFee": 12000,
+    "image": "https://images.unsplash.com/photo-1596662951482-0c4e0d53a7e8?w=800",
+    "tags": ["Ưu đãi"],
+    "promoted": false
+  },
+  {
+    "id": "6",
+    "name": "Taco Bell",
+    "cuisine": "Ẩm thực Mexico",
+    "rating": 4.2,
+    "deliveryTime": "20-30 phút",
+    "deliveryTimeMinutes": 25,
+    "distance": "2.3 km",
+    "deliveryFee": 18000,
+    "image": "https://images.unsplash.com/photo-1599029112902-8a0e0e4c0b0d?w=800",
+    "tags": ["Món mới"],
+    "promoted": true
+  }
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "id": "1",
+    "name": "Cơm",
+    "image": "https://images.unsplash.com/photo-1512054502232-10a0a035d672?w=100&h=100&fit=crop"
+  },
+  {
+    "id": "2",
+    "name": "Trà sữa",
+    "image": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=100&h=100&fit=crop"
+  },
+  {
+    "id": "3",
+    "name": "Đồ ăn vặt",
+    "image": "https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=100&h=100&fit=crop"
+  },
+  {
+    "id": "4",
+    "name": "Pizza",
+    "image": "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=100&h=100&fit=crop"
+  },
+  {
+    "id": "5",
+    "name": "Cà phê",
+    "image": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=100&h=100&fit=crop"
+  }
+]

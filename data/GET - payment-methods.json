@@ -1,0 +1,6 @@
+[
+  { "id": 1, "name": "Tiền mặt", "icon": "cash" },
+  { "id": 2, "name": "Thẻ tín dụng", "icon": "card" },
+  { "id": 3, "name": "Ví điện tử", "icon": "wallet" },
+  { "id": 4, "name": "ZaloPay", "icon": "zalopay" }
+]

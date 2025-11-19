@@ -1,0 +1,32 @@
+{
+  "id": "1",
+  "date": "2023-05-15 12:34",
+  "status": "Đang giao",
+  "statusColor": "#34C759",
+  "restaurant": {
+    "name": "Phở Hòa Bình",
+    "image": "https://images.unsplash.com/photo-1712026063351-61d52c2e4abb?w=900"
+  },
+  "items": [
+    { "id": "m1", "name": "Phở Bò", "price": 45000, "quantity": 2 },
+    { "id": "m2", "name": "Gỏi Cuốn", "price": 25000, "quantity": 1 }
+  ],
+  "deliveryInfo": {
+    "address": "123 Đường ABC, Quận 1",
+    "recipient": "Nguyễn Văn An",
+    "phone": "0987654321",
+    "note": ""
+  },
+  "driver": {
+    "name": "Trần Văn T",
+    "rating": 4.9,
+    "licensePlate": "51A-12345"
+  },
+  "pricing": {
+    "subtotal": 115000,
+    "deliveryFee": 15000,
+    "discount": 5000,
+    "total": 125000
+  },
+  "estimatedTime": "30-45 phút"
+}

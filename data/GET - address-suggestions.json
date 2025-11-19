@@ -1,0 +1,16 @@
+[
+  {
+    "id": "loc_1",
+    "text": "Vincom Center",
+    "place_name": "Vincom Center, Đồng Khởi, Quận 1, TP. HCM",
+    "latitude": 10.777,
+    "longitude": 106.7
+  },
+  {
+    "id": "loc_2",
+    "text": "Bến xe Miền Đông",
+    "place_name": "Bến xe Miền Đông, Bình Thạnh, TP. HCM",
+    "latitude": 10.849,
+    "longitude": 106.759
+  }
+]

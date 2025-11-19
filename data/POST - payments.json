@@ -1,0 +1,5 @@
+{
+  "provider": "zalo",
+  "token": "mock_payment_token_abc123",
+  "payUrl": "https://mockpay.example.com/pay/abc123"
+}

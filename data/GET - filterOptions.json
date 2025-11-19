@@ -1,0 +1,7 @@
+[
+  { "id": "1", "name": "Ưu đãi", "icon": "tag" },
+  { "id": "2", "name": "Đánh giá 4.5+", "icon": "star" },
+  { "id": "3", "name": "Giao hàng miễn phí", "icon": "truck" },
+  { "id": "4", "name": "Dưới 30 phút", "icon": "clock" },
+  { "id": "5", "name": "Khoảng cách gần", "icon": "mappin" }
+]

@@ -1,0 +1,74 @@
+{
+  "menuCategories": [
+    { "id": "1", "name": "Món chính" },
+    { "id": "2", "name": "Khai vị" },
+    { "id": "3", "name": "Đồ uống" },
+    { "id": "4", "name": "Tráng miệng" }
+  ],
+  "menuItems": [
+    {
+      "id": "1",
+      "categoryId": "1",
+      "name": "Phở Bò Tái",
+      "description": "Phở bò với thịt tái, nước dùng trong, thơm ngon đặc trưng",
+      "price": 45000,
+      "image": "https://images.unsplash.com/photo-1620147123631-7291b2b5a4f7?w=900&auto=format&fit=crop&q=60"
+    },
+    {
+      "id": "2",
+      "categoryId": "1",
+      "name": "Phở Gà",
+      "description": "Phở với thịt gà ta, nước dùng thanh ngọt",
+      "price": 40000,
+      "image": "https://images.unsplash.com/photo-1620147123631-7291b2b5a4f7?w=900&auto=format&fit=crop&q=60"
+    },
+    {
+      "id": "3",
+      "categoryId": "1",
+      "name": "Bún Bò Huế",
+      "description": "Món đặc sản Huế với nước dùng cay nồng, thịt bò, giò heo",
+      "price": 50000,
+      "image": "https://images.unsplash.com/photo-1620147123631-7291b2b5a4f7?w=900&auto=format&fit=crop&q=60"
+    },
+    {
+      "id": "4",
+      "categoryId": "2",
+      "name": "Gỏi Cuốn Tôm Thịt",
+      "description": "Gỏi cuốn với tôm, thịt heo, rau sống",
+      "price": 30000,
+      "image": "https://images.unsplash.com/photo-1648580852350-3098af89f110?w=900&auto=format&fit=crop&q=60"
+    },
+    {
+      "id": "5",
+      "categoryId": "2",
+      "name": "Nem Nướng",
+      "description": "Nem nướng Ninh Hòa với thịt nướng thơm phức",
+      "price": 35000,
+      "image": "https://images.unsplash.com/photo-1648580852350-3098af89f110?w=900&auto=format&fit=crop&q=60"
+    },
+    {
+      "id": "6",
+      "categoryId": "3",
+      "name": "Trà Đá",
+      "description": "Trà đá truyền thống Việt Nam",
+      "price": 5000,
+      "image": "https://images.unsplash.com/photo-1546916925-509d4f177c37?w=900&auto=format&fit=crop&q=60"
+    },
+    {
+      "id": "7",
+      "categoryId": "3",
+      "name": "Cà Phê Đen",
+      "description": "Cà phê đen nguyên chất, đậm đà",
+      "price": 15000,
+      "image": "https://images.unsplash.com/photo-1546916925-509d4f177c37?w=900&auto=format&fit=crop&q=60"
+    },
+    {
+      "id": "8",
+      "categoryId": "4",
+      "name": "Chè Ba Màu",
+      "description": "Chè ba màu truyền thống",
+      "price": 20000,
+      "image": "https://images.unsplash.com/photo-1648580852350-3098af89f110?w=900&auto=format&fit=crop&q=60"
+    }
+  ]
+}

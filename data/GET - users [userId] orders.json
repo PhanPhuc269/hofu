@@ -1,0 +1,18 @@
+[
+  {
+    "id": "order_1",
+    "restaurantName": "Phở Hòa Bình",
+    "orderDate": "2023-05-15",
+    "totalAmount": 125000,
+    "status": "Đang giao",
+    "statusColor": "#34C759"
+  },
+  {
+    "id": "order_2",
+    "restaurantName": "Trà Sữa Gong Cha",
+    "orderDate": "2023-05-10",
+    "totalAmount": 85000,
+    "status": "Đã giao",
+    "statusColor": "#34C759"
+  }
+]
