@@ -126,11 +126,8 @@ const OrderHistoryScreen = () => {
   return (
     <View className="flex-1 bg-gray-100">
       {/* Header */}
-      <View className="bg-green-600 pt-12 pb-4 px-4">
-        <View className="flex-row items-center mb-4">
-          <TouchableOpacity className="p-2">
-            <ArrowLeft color="white" size={24} />
-          </TouchableOpacity>
+      <View className="bg-green-600 items-center pt-12 pb-4 px-4">
+        <View className="flex-row items-center">
           <Text className="text-white text-xl font-bold ml-4">
             Lịch sử đơn hàng
           </Text>

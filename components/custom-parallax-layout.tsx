@@ -61,7 +61,6 @@ export default function CustomParallaxLayout({
   const colorScheme = useColorScheme() ?? "light";
 
   // No Reanimated transforms: header and overlay will scroll naturally with the ScrollView
-
   const renderBackground = () => {
     if (!headerBackground) return null;
     if (headerBackground.type === "color") {
@@ -88,11 +87,22 @@ export default function CustomParallaxLayout({
       ? renderHeaderOverlay()
       : renderHeaderOverlay || null;
 
+  // If a solid header color is provided, use it as the ScrollView background
+  const scrollBackgroundColor =
+    headerBackground &&
+    (headerBackground as HeaderBackgroundColor).type === "color"
+      ? ((headerBackground as HeaderBackgroundColor).color ??
+        (backgroundColor as string))
+      : (backgroundColor as string);
+
   return (
     <Animated.ScrollView
-      style={{ backgroundColor, flex: 1 }}
-      // ensure the scroll view's content area (including overscroll) uses the themed background
-      contentContainerStyle={{ backgroundColor, flexGrow: 1 }}
+      style={{ backgroundColor: scrollBackgroundColor, flex: 1 }}
+      // ensure the scroll view's content area (including overscroll) uses the header/background color
+      contentContainerStyle={{
+        backgroundColor: scrollBackgroundColor,
+        flexGrow: 1,
+      }}
       // allow bounce/overscroll but keep background visible
       bounces={true}
       scrollEventThrottle={16}
@@ -104,7 +114,9 @@ export default function CustomParallaxLayout({
         </View>
       </View>
 
-      <ThemedView style={styles.content} className="bg-white">{children}</ThemedView>
+      <ThemedView style={styles.content} className="bg-white">
+        {children}
+      </ThemedView>
     </Animated.ScrollView>
   );
 }

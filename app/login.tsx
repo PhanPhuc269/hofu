@@ -1,156 +1,180 @@
+import { loginWithEmail } from "@/services/firebase";
+import { useRouter } from "expo-router";
+import { Eye, EyeOff, Lock, Mail } from "lucide-react-native";
 import React, { useState } from "react";
 import {
-  View,
-  StyleSheet,
-  ImageBackground,
-  KeyboardAvoidingView,
-  Platform,
-} from "react-native";
-import {
+  ActivityIndicator,
+  Alert,
+  Image,
+  ScrollView,
   Text,
   TextInput,
-  Button,
-  HelperText,
-  Title,
-  Card,
-  IconButton,
-  Avatar,
-} from "react-native-paper";
-import { useRouter } from "expo-router";
-import { loginWithEmail } from "@/services/firebase";
-import { SafeAreaView } from "react-native-safe-area-context";
+  TouchableOpacity,
+  View,
+} from "react-native";
 
-export default function LoginPage() {
-  const router = useRouter();
+export default function LoginScreen() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [visible, setVisible] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
-  const onSubmit = async () => {
+  const handleLogin = async () => {
     setLoading(true);
     setError(null);
     try {
       await loginWithEmail(email.trim(), password);
-      // Navigate to home / or tabs
       router.replace("/");
     } catch (e: any) {
-      setError(e?.message ?? "Login failed");
+      setError(e?.message ?? "Đăng nhập thất bại");
     } finally {
       setLoading(false);
     }
   };
 
+  const handleSocialLogin = (platform: string) => {
+    console.log(`Logging in with ${platform}`);
+  };
+
   return (
-    <ImageBackground
-      source={require("@/assets/images/react-logo.png")}
-      resizeMode="cover"
-      style={styles.background}
+    <ScrollView
+      className="flex-1 bg-white"
+      contentContainerStyle={{ flexGrow: 1 }}
+      keyboardShouldPersistTaps="handled"
     >
-      <SafeAreaView style={styles.safe}>
-        <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : undefined}
-          style={styles.keyboard}
-        >
-          <View style={styles.overlay} />
+      <View className="flex-1 px-6 pt-16">
+        {/* Header Section */}
+        <View className="items-center mb-10">
+          <Text className="text-3xl font-bold text-green-600 mb-2">
+            FoodExpress
+          </Text>
+          <Text className="text-gray-500 text-center">
+            Đăng nhập để tiếp tục trải nghiệm đặt đồ ăn tuyệt vời
+          </Text>
+        </View>
 
-          <Card style={styles.card} elevation={4}>
-            <Card.Content>
-              <View style={styles.header}>
-                <Avatar.Icon size={64} icon="account" />
-                <Title style={styles.title}>Welcome back</Title>
-              </View>
+        {/* Illustration */}
+        <View className="items-center mb-8">
+          <Image
+            source={{
+              uri: "https://images.unsplash.com/photo-1480694313141-fce5e697ee25?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8c21hcnRwaG9uZXxlbnwwfHwwfHx8MA%3D%3D",
+            }}
+            className="w-64 h-40 rounded-lg"
+            resizeMode="contain"
+          />
+        </View>
 
+        {/* Login Form */}
+        <View className="mb-6">
+          <View className="mb-5">
+            <Text className="text-gray-700 font-medium mb-2">Email</Text>
+            <View className="flex-row items-center border border-gray-300 rounded-xl px-4 py-3 bg-gray-50">
+              <Mail size={20} color="#666" />
               <TextInput
-                label="Email"
-                value={email}
-                onChangeText={setEmail}
+                className="flex-1 ml-3 text-gray-700"
+                placeholder="Nhập email của bạn"
                 keyboardType="email-address"
                 autoCapitalize="none"
-                mode="outlined"
-                style={styles.input}
+                value={email}
+                onChangeText={setEmail}
               />
+            </View>
+          </View>
 
+          <View className="mb-6">
+            <Text className="text-gray-700 font-medium mb-2">Mật khẩu</Text>
+            <View className="flex-row items-center border border-gray-300 rounded-xl px-4 py-3 bg-gray-50">
+              <Lock size={20} color="#666" />
               <TextInput
-                label="Password"
+                className="flex-1 ml-3 text-gray-700"
+                placeholder="Nhập mật khẩu"
+                secureTextEntry={!showPassword}
                 value={password}
                 onChangeText={setPassword}
-                secureTextEntry={!visible}
-                mode="outlined"
-                right={
-                  <TextInput.Icon
-                    icon={visible ? "eye-off" : "eye"}
-                    onPress={() => setVisible((v) => !v)}
-                  />
-                }
-                style={styles.input}
               />
+              <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+                {showPassword ? (
+                  <EyeOff size={20} color="#666" />
+                ) : (
+                  <Eye size={20} color="#666" />
+                )}
+              </TouchableOpacity>
+            </View>
+          </View>
 
-              {error ? <HelperText type="error">{error}</HelperText> : null}
+          {error ? <Text className="text-red-500 mb-4">{error}</Text> : null}
 
-              <Button
-                mode="contained"
-                onPress={onSubmit}
-                loading={loading}
-                disabled={loading}
-                style={styles.button}
-                contentStyle={{ paddingVertical: 6 }}
+          <View className="flex-row items-center justify-between mb-6">
+            <View className="flex-row items-center">
+              <TouchableOpacity
+                className={`w-5 h-5 rounded border mr-2 ${rememberMe ? "bg-green-500 border-green-500" : "border-gray-300"}`}
+                onPress={() => setRememberMe(!rememberMe)}
               >
-                Sign in
-              </Button>
+                {rememberMe && (
+                  <View className="w-3 h-3 bg-white rounded-full self-center mt-1 ml-1" />
+                )}
+              </TouchableOpacity>
+              <Text className="text-gray-700">Ghi nhớ đăng nhập</Text>
+            </View>
 
-              <Button
-                mode="text"
-                onPress={() => router.push("/register")}
-                compact
-                style={styles.link}
-              >
-                Create account
-              </Button>
-            </Card.Content>
-          </Card>
-        </KeyboardAvoidingView>
-      </SafeAreaView>
-    </ImageBackground>
+            <TouchableOpacity
+              onPress={() =>
+                Alert.alert("Chức năng", "Quên mật khẩu chưa được triển khai")
+              }
+            >
+              <Text className="text-green-600 font-medium">Quên mật khẩu?</Text>
+            </TouchableOpacity>
+          </View>
+
+          <TouchableOpacity
+            className="bg-green-600 py-4 rounded-xl items-center mb-6"
+            onPress={handleLogin}
+            disabled={loading}
+          >
+            {loading ? (
+              <ActivityIndicator color="#fff" />
+            ) : (
+              <Text className="text-white font-bold text-lg">Đăng nhập</Text>
+            )}
+          </TouchableOpacity>
+        </View>
+
+        {/* Social Login */}
+        <View className="mb-8">
+          <View className="flex-row items-center mb-6">
+            <View className="flex-1 h-px bg-gray-300"></View>
+            <Text className="text-gray-500 px-4">Hoặc đăng nhập với</Text>
+            <View className="flex-1 h-px bg-gray-300"></View>
+          </View>
+
+          <View className="flex-row justify-between">
+            <TouchableOpacity
+              className="flex-1 mx-2 py-3 border border-gray-300 rounded-xl items-center"
+              onPress={() => handleSocialLogin("Google")}
+            >
+              <Text className="text-gray-700 font-medium">Google</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              className="flex-1 mx-2 py-3 border border-gray-300 rounded-xl items-center"
+              onPress={() => handleSocialLogin("Facebook")}
+            >
+              <Text className="text-gray-700 font-medium">Facebook</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        {/* Sign Up Link */}
+        <View className="flex-row justify-center">
+          <Text className="text-gray-600">Bạn chưa có tài khoản? </Text>
+          <TouchableOpacity onPress={() => router.push("/register")}>
+            <Text className="text-green-600 font-bold">Đăng ký ngay</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    width: "100%",
-    height: "100%",
-    justifyContent: "center",
-  },
-  safe: { flex: 1 },
-  keyboard: { flex: 1, justifyContent: "center", padding: 16 },
-  overlay: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(0,0,0,0.35)",
-  },
-  card: {
-    marginHorizontal: 20,
-    borderRadius: 12,
-    overflow: "hidden",
-  },
-  header: {
-    alignItems: "center",
-    marginBottom: 6,
-  },
-  title: {
-    marginTop: 8,
-    textAlign: "center",
-  },
-  input: {
-    marginBottom: 12,
-  },
-  button: {
-    marginTop: 8,
-    borderRadius: 8,
-  },
-  link: {
-    marginTop: 6,
-    alignSelf: "center",
-  },
-});

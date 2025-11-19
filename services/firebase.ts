@@ -7,20 +7,19 @@ import { getApp, getApps, initializeApp } from "firebase/app";
 import {
   createUserWithEmailAndPassword,
   getAuth,
+  getReactNativePersistence,
   initializeAuth,
   signInWithEmailAndPassword,
+  signOut,
   UserCredential,
   type Auth,
-  getReactNativePersistence
 } from "firebase/auth";
-// React Native AsyncStorage persistence for firebase/auth
-// NOTE: make sure to install this in your project (see README below)
-import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage";
+
 import { getExtra } from "@/utils/config";
+import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage";
 
 const EXTRA = getExtra();
 
-// TODO: Replace the placeholder values below with your Firebase project's config.
 const firebaseConfig = {
   apiKey: EXTRA.API_KEY,
   authDomain: EXTRA.AUTH_DOMAIN,
@@ -32,14 +31,10 @@ const firebaseConfig = {
   measurementId: EXTRA.MEASUREMENT_ID,
 };
 
-// initialize (or reuse) the Firebase app instance
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
-// Initialize auth with React Native persistence when possible. If initialization
-// for React Native fails (e.g., running in web), fall back to getAuth(app).
 let auth: Auth;
 try {
-  // This will enable persistence across app restarts when AsyncStorage is available
   auth = initializeAuth(app, {
     persistence: getReactNativePersistence(ReactNativeAsyncStorage),
   });
@@ -48,14 +43,7 @@ try {
   auth = getAuth(app);
 }
 
-// Keep the API client in sync with Firebase ID tokens. When the user's ID token
-// changes (login, logout, refresh), update the `services/api` auth token so
-// backend calls include the current bearer token.
 try {
-  // Import here to avoid circular import during module initialization in some cases
-  // (services/api imports expo-constants and is small; this keeps ordering stable).
-  // eslint-disable-next-line import/no-extraneous-dependencies
-  // @ts-ignore
   const api = require("./api").default as {
     setAuthToken: (t: string | null) => void;
   };
@@ -66,7 +54,6 @@ try {
       return;
     }
     try {
-      // getIdToken() returns a current token (not forcing refresh)
       const token = await user.getIdToken();
       api.setAuthToken(token);
     } catch (e) {
@@ -89,6 +76,11 @@ export async function loginWithEmail(
   password: string
 ): Promise<UserCredential> {
   return signInWithEmailAndPassword(auth, email, password);
+}
+
+export async function logout(): Promise<void> {
+  // Signs out the current user. onIdTokenChanged listener will clear API token.
+  return signOut(auth);
 }
 
 export { auth };

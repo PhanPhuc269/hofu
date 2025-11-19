@@ -8,7 +8,9 @@ import { StatusBar } from "expo-status-bar";
 import "react-native-reanimated";
 import "../global.css";
 
+import ToastProvider from "@/components/toast";
 import { useColorScheme } from "@/hooks/use-color-scheme";
+import useNotifications from "@/hooks/useNotifications";
 import { auth } from "@/services/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
@@ -20,6 +22,8 @@ export const unstable_settings = {
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
+  // register notifications (token + listeners) as early as possible
+  useNotifications();
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState<any | null>(null);
 
@@ -68,6 +72,7 @@ export default function RootLayout() {
         </Stack>
       )}
       <StatusBar style="auto" />
+      <ToastProvider />
     </ThemeProvider>
   );
 }

@@ -15,8 +15,9 @@ import CustomParallaxLayout from "@/components/custom-parallax-layout";
 import { ThemedText } from "@/components/themed-text";
 import { Category } from "@/models/Category";
 import { Restaurant } from "@/models/Restaurant";
+import { useFocusEffect } from "@react-navigation/native";
 import { Search } from "lucide-react-native";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ActivityIndicator } from "react-native-paper";
 
 const renderCategory = ({ item }: { item: Category }) => (
@@ -48,6 +49,9 @@ export default function HomeScreen() {
   const [error, setError] = useState<string | null>(null);
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   const router = useRouter();
+  const [selectedAddress, setSelectedAddress] = useState<string>(
+    "123 Đường ABC, Quận 1"
+  );
 
   // repository that uses WatermelonDB cache (or in-memory fallback)
 
@@ -162,6 +166,66 @@ export default function HomeScreen() {
       mounted = false;
     };
   }, []);
+
+  // Load selected address persisted by Address Selection screen whenever this screen is focused
+  useFocusEffect(
+    useCallback(() => {
+      let mounted = true;
+      (async () => {
+        try {
+          const AsyncStorage = (
+            await import("@react-native-async-storage/async-storage")
+          ).default;
+          const raw = await AsyncStorage.getItem("@hofu:selectedAddress");
+          if (raw) {
+            const parsed = JSON.parse(raw);
+            // Map similar to payment screen mapping
+            const addr = parsed || {};
+            const orig = addr.originalData?.address || {};
+
+            const mapped = {
+              name:
+                addr.text ||
+                addr.place_name ||
+                orig?.residential ||
+                orig?.dormitory ||
+                "",
+              street: orig?.road || orig?.pedestrian || addr.place_name || "",
+              ward: orig?.suburb || orig?.neighbourhood || "",
+              district:
+                orig?.county ||
+                orig?.state_district ||
+                orig?.city_district ||
+                "",
+              city: orig?.city || orig?.town || orig?.village || "",
+              place_name: addr.place_name,
+            };
+
+            const parts = [
+              mapped.street,
+              mapped.ward,
+              mapped.district,
+              mapped.city,
+            ].filter(Boolean);
+            const display =
+              parts.length > 0
+                ? parts.join(", ")
+                : mapped.place_name || mapped.name || "";
+            if (mounted && display) setSelectedAddress(display);
+
+            // remove stored value so it won't be reapplied repeatedly
+            await AsyncStorage.removeItem("@hofu:selectedAddress");
+          }
+        } catch (e) {
+          // ignore
+        }
+      })();
+
+      return () => {
+        mounted = false;
+      };
+    }, [])
+  );
   const ListHeader = () => (
     <View>
       <ThemedText className="text-xl font-bold mb-4">Danh mục</ThemedText>
@@ -194,10 +258,14 @@ export default function HomeScreen() {
         <View>
           <Link href="/address-selection" asChild>
             <TouchableOpacity>
-              <View className="flex-row items-center mb-4">
-                <Text className="text-white text-lg font-bold">
-                  <Text className="text-white">Giao đến:</Text> 123 Đường ABC,
-                  Quận 1
+              <View className="flex-row items-center mb-2 mt-8">
+                <Text className="text-white text-lg font-bold">Giao đến: </Text>
+                <Text
+                  className="text-white text-lg font-bold flex-1"
+                  numberOfLines={1}
+                  ellipsizeMode="tail"
+                >
+                  {selectedAddress}
                 </Text>
                 <Text className="text-white ml-2">▼</Text>
               </View>
